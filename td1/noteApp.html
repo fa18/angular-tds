@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TD1">
+<head>
+    <meta charset="UTF-8">
+    <title>App note</title>
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="noteApp.js"></script>
+    <script src="noteController.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+
+<body ng-controller="NoteController as noteCtrl">
+
+<div class="container">
+    <div ng-show="isRunning()" class="panel panel default">
+        <div class="panel-body">
+
+        </div>
+    </div>
+
+
+    <!-- ngView:  --><div ng-view="" class="toggle ng-scope" style=""><div id="note" class="ng-scope">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Ex 1 : Note Application</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <p><label for="message">Note :</label>
+                    <textarea data-ng-change="noteCtrl.updateInfo()" name="message" id="message" data-ng-model="message" cols="40" rows="5" class="form-control ng-valid ng-valid-maxlength ng-dirty ng-valid-parse ng-touched" maxlength="100" style=""></textarea>
+                </p>
+                <p>
+                    <button data-ng_click="noteCtrl.save()" class="btn btn-primary">Enregistrer</button>
+                    <button data-ng-click="noteCtrl.clear()" class="btn btn-primary">Effacer</button>
+                </p>
+
+                <div class="alert alert-info alert-dismissible" role="alert">Nombre de caractères restant : {{noteCtrl.caracRestant}} </div>
+                
+                <div ng-class="{'alert-info':message=='','alert-warning':message!='' &amp;&amp; info!='Note sauvegardée','alert-danger':noteCtrl.count()&lt;10 &amp;&amp; info!='Note sauvegardée','alert-success':info=='Note sauvegardée'}" class="alert alert-dismissible alert-info" role="alert" data-ng-show="info" style="">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="info=''"><span aria-hidden="true">×</span></button>
+                    <span class="ng-binding">Note modifiée</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+</div>
+
+</body>
+</html>
