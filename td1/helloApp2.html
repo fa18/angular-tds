@@ -25,7 +25,7 @@
     
     <div ng-repeat="client in clients">
 
-        <label><input type="radio" ng-model="pays" ng-value="client.id" name="client">{{ client.nom + ', ' + client.pays }}</label>
+        <label><input type="radio" ng-model="pays" ng-value="client.pays" name="client">{{ client.nom + ', ' + client.pays }}</label>
         <p>Vous avez choisi : {{ pays }}</p>
     </div>
 </div>
