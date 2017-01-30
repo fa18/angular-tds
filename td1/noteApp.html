@@ -42,7 +42,7 @@
 
                 <div ng-class="{'alert-warning': noteCtrl.warning,'alert-danger': noteCtrl.danger}" class="alert alert-info alert-dismissible" role="alert">Nombre de caractères restant : {{noteCtrl.caracRestant}}</div>
                 
-                <div ng-show="noteCtrl.info" class="alert alert-success fade in alert-dismissable" style="margin-top:18px;">
+                <div ng-show="noteCtrl.info" ng-class="{'alert-success': noteCtrl.saved}" class="alert alert-success fade in alert-dismissable" style="margin-top:18px;">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
                         {{noteCtrl.info}}
                 </div>

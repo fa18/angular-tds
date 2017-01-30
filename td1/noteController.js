@@ -6,10 +6,12 @@ noteApp.controller('NoteController', function(){ //['$cookies', function($cookie
     //this.messageBox = message || "";
     this.messageNote = "";
     this.info = "";
+    this.status=1;
  
     this.save = function(){
 
         this.info="Note Sauvegardée";
+        this.status=0;
     };
 
     this.clear = function(){
@@ -27,6 +29,10 @@ noteApp.controller('NoteController', function(){ //['$cookies', function($cookie
         if(this.caracRestant < 50){
             if(this.caracRestant < 20){
                 this.danger = true;
+                this.status=2;
+                 if(this.caracRestant < 20){
+                    this.status=3;
+                 }
             }
             this.warning = true;
 }
