@@ -4,13 +4,19 @@ var noteApp = angular.module("TD1");
 noteApp.controller('NoteController', function(){
     this.messageNote = "ma note";
     this.info = "";
+ 
     this.save = function(){
 
     };
-    this.clear = function(){
 
+    this.clear = function(){
+        this.messageBox = "";
+        self.info="Note effacée";
+        this.caracRestant =100;
     };
+
     this.caracRestant = 100;
+
     this.count = function(){
         this.caracRestant = 100-this.messageBox.length;
     };
