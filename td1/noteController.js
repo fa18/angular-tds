@@ -19,5 +19,13 @@ noteApp.controller('NoteController', function(){
 
     this.count = function(){
         this.caracRestant = 100-this.messageBox.length;
+         this.warning = false;
+        this.danger = false;
+        if(this.caracRestant < 50){
+            if(this.caracRestant < 10){
+                this.danger = true;
+            }
+            this.warning = true;
+}
     };
 });
