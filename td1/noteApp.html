@@ -33,18 +33,18 @@
         <div class="panel-body">
             <div class="form-group">
                 <p><label for="message">Note :</label>
-                    <textarea data-ng-change="noteCtrl.count()" data-ng-change="noteCtrl.clear()" data-ng-model="noteCtrl.messageBox"  data-ng-change="noteCtrl.updateInfo()" name="message" id="message" data-ng-model="message" cols="40" rows="5" class="form-control ng-valid ng-valid-maxlength ng-dirty ng-valid-parse ng-touched" maxlength="100" style=""></textarea>
+                    <textarea data-ng-change="noteCtrl.count()" data-ng-change="noteCtrl.clear()" data-ng-model="noteCtrl.messageNote"  data-ng-change="noteCtrl.updateInfo()" name="message" id="message" data-ng-model="message" cols="40" rows="5" class="form-control ng-valid ng-valid-maxlength ng-dirty ng-valid-parse ng-touched" maxlength="100" style=""></textarea>
                 </p>
                 <p>
                     <button data-ng-click="noteCtrl.save()" class="btn btn-primary">Enregistrer</button>
                     <button data-ng-click="noteCtrl.clear()" class="btn btn-primary">Effacer</button>
                 </p>
 
-                <div class="alert alert-info alert-dismissible" role="alert">Nombre de caractères restant : {{noteCtrl.caracRestant}}</div>
+                <div ng-class="{'alert-warning': noteCtrl.warning,'alert-danger': noteCtrl.danger}" class="alert alert-info alert-dismissible" role="alert">Nombre de caractères restant : {{noteCtrl.caracRestant}}</div>
                 
-                <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;">
+                <div ng-show="noteCtrl.info" class="alert alert-success fade in alert-dismissable" style="margin-top:18px;">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
-                        {{noteCtrl.messageNote}}
+                        {{noteCtrl.info}}
                 </div>
 
             

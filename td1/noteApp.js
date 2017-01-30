@@ -1,1 +1,1 @@
-angular.module("TD1",[]);
+angular.module("TD1",[]); //['ngCookies']
