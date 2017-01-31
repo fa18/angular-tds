@@ -1,0 +1,70 @@
+<html>
+<head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+	
+	<meta charset="UTF-8">
+	<link rel="icon" type="image/png" href="https://docs.angularjs.org/favicon.ico">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://angular.kobject.net/css/styles.css">
+	<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
+	<link rel="stylesheet" href="http://angular.kobject.net/css/prism.css">
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script async="" type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+
+	<script type="text/javascript" src="http://angular.kobject.net/js/lib/jquery-ui.min.js"></script>
+	<script src="servicesApp.js"></script>
+    <script src="servicesController.js"></script>
+
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-app="TD1" class="ng-scope" ng-controller="servicesController as serviceCtrl">
+<!-- ngInclude: 'templates/navBarre.html' --><div style="" class="ng-scope" data-ng-include="'templates/navBarre.html'"><header class="navbar navbar-static-top bs-docs-nav ng-scope" id="top" role="banner">
+	
+</header></div>
+	
+		<!-- ngView:  --><div style="" ng-view="" class="toggle ng-scope"><form style="" class="ng-valid ng-scope ng-dirty ng-valid-parse" id="services">
+
+	<h1>Services</h1>
+	<div class="alert alert-info">
+		<span>Choisissez les éléments à inclure</span>
+		<p>
+			<ng-pluralize count="count" when="{0:'Aucun service sélectionné',
+											1:'1 service sélectionné',
+											'other':'{} services sélectionnés'}">4 services sélectionnés</ng-pluralize>
+		</p>
+	</div>
+	<ul>
+		<!-- ngRepeat: service in services --><li style="" ng-click="ctlapp.toggleActive(service)" ng-class="{active:service.active}" class="ng-binding ng-scope active" ng-repeat="service in serviceCtrl.services" ng-click="toggleActive(service)" ng-class="{active:service.active}">
+			{{service.name}} <span class="ng-binding">{{service.price}}&nbsp;€</span>
+	</ul>
+
+	
+
+	<div class="total">
+		<!-- Format en currency. -->
+		Total: <span class="ng-binding">1&nbsp;170,00&nbsp;€</span>
+	</div>
+	<div>
+		<div class="input-group">
+      <span class="input-group-addon">
+        <input style="" class="ng-valid ng-dirty ng-valid-parse ng-touched" aria-label="..." ng-model="ckPromo" ng-click="applyCode()" type="checkbox">
+      </span>
+			<input class="form-control ng-pristine ng-untouched ng-valid" aria-label="..." ng-model="codePromo" placeholder="Code promo" ng-keyup="applyCode()" type="text">
+		</div>
+	</div>
+	<div class="total ng-hide" ng-show="ckPromo&amp;&amp;codePromo">
+		Remise :<!-- ngIf: IsNumeric(remise) --><!-- ngIf: !IsNumeric(remise) --><span class="ng-binding ng-scope" ng-if="!IsNumeric(remise)">Code promo invalide</span><!-- end ngIf: !IsNumeric(remise) --><br>
+		Total avec remise :<span class="ng-binding"></span>
+	</div>
+</form></div>
+	</div>
+
+
+</html>
