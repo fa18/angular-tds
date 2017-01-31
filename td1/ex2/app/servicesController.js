@@ -1,6 +1,6 @@
 var serviceApp = angular.module("TD1",[]);
 
-serviceApp.controller('servicesController', function(){
+serviceApp.controller('servicesController', function($http){
 	var self = this;
 	this.cpt = 1;
 	this.total = 300;
@@ -52,6 +52,22 @@ serviceApp.controller('servicesController', function(){
 
     	console.log(this.cpt);
     }	
+
+
+    this.promoExiste = function(){   
+		$http.get("promo.json").then(function(response) {    
+			self.remise = 0;
+			self.totalAvecRemise = 0;
+			self.promoError = true;
+	    	angular.forEach(response.data, function(value, key){
+	    		if(self.codePromo == key) {
+	    			self.remise = self.totals*value;
+	    			self.totalAvecRemise = self.totals-self.remise;
+	    			self.promoError = false;
+	    		}
+	    	});    
+	    });
+    }
 
 
     	
