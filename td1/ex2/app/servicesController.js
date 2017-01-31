@@ -1,7 +1,7 @@
 var serviceApp = angular.module("TD1",[]);
 
 serviceApp.controller('servicesController', function(){
-	this.self = this;
+	var self = this;
 	this.cpt = 1;
 	this.totals = 0;
 
@@ -24,5 +24,16 @@ serviceApp.controller('servicesController', function(){
 	        "active":false
 	    }
 	];
+
+
+	 this.toggleActive = function($i){
+	 	console.log($i);
+    	// Si c'est actif, alors ca désactive
+    	if(!this.services[$i].active){
+    		this.services[$i].active = true;
+    	}
+    	else
+    		this.services[$i].active = false;
+    }	
 
 });	

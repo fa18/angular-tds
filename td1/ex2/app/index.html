@@ -41,7 +41,7 @@
 		</p>
 	</div>
 	<ul>
-		<!-- ngRepeat: service in services --><li style="" ng-click="ctlapp.toggleActive(service)" ng-class="{active:service.active}" class="ng-binding ng-scope active" ng-repeat="service in serviceCtrl.services" ng-click="toggleActive(service)" ng-class="{active:service.active}">
+		<!-- ngRepeat: service in services --><li style=""   class="ng-binding ng-scope " ng-repeat="service in serviceCtrl.services" ng-class="{active: service.active}" ng-click="serviceCtrl.toggleActive($index)">
 			{{service.name}} <span class="ng-binding">{{service.price}}&nbsp;€</span>
 	</ul>
 
