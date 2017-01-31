@@ -35,9 +35,7 @@
 	<div class="alert alert-info">
 		<span>Choisissez les éléments à inclure</span>
 		<p>
-			<ng-pluralize count="count" when="{0:'Aucun service sélectionné',
-											1:'1 service sélectionné',
-											'other':'{} services sélectionnés'}">4 services sélectionnés</ng-pluralize>
+			<ng-pluralize count="serviceCtrl.cpt" when="{0:'Aucun service sélectionné', 1:'1 service sélectionné','other':'{} services sélectionnés'}"></ng-pluralize>
 		</p>
 	</div>
 	<ul>

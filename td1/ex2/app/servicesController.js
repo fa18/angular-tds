@@ -27,13 +27,18 @@ serviceApp.controller('servicesController', function(){
 
 
 	 this.toggleActive = function($i){
-	 	console.log($i);
+	 	//console.log($i);
+	 	
     	// Si c'est actif, alors ca désactive
     	if(!this.services[$i].active){
     		this.services[$i].active = true;
+    		this.cpt++;
     	}
-    	else
+    	else{
     		this.services[$i].active = false;
+    		this.cpt--;
+    	}
+    	console.log(this.cpt);
     }	
 
 });	
