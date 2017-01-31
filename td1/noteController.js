@@ -1,23 +1,30 @@
 // Création du module; [] -> Dépendances
-var noteApp = angular.module("TD1"); 
+var noteApp = angular.module("TD1",['ngCookies']); 
 
-noteApp.controller('NoteController', function(){ //['$cookies', function($cookies)
-    //var message = $cookies.get("message");
-    //this.messageBox = message || "";
-    this.messageNote = "";
+noteApp.controller('NoteController', ['$cookies', function($cookies){
+    var message = $cookies.get("message");
+    this.messageNote = message || "";
+   
     this.info = "";
     this.status=1;
  
     this.save = function(){
-
-        this.info="Note Sauvegardée";
-        this.status=0;
+        if(this.messageNote != ""){
+            this.info = "Note sauvegardée";
+            this.status=0;
+            this.saved = true;
+            $cookies.put("message",this.messageNote);
+        }
+        
+        
     };
 
     this.clear = function(){
+        if(this.messageNote != ""){
         this.messageNote = "";
         this.info="Note effacée";
         this.caracRestant =100;
+        }
     };
 
     this.caracRestant = 100;
@@ -37,4 +44,4 @@ noteApp.controller('NoteController', function(){ //['$cookies', function($cookie
             this.warning = true;
 }
     };
-}); //]
+}]); //]
