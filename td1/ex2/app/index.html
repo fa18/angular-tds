@@ -60,7 +60,7 @@
 	</div>
 	<div class="total ng-hide" ng-show="serviceCtrl.CodePromoCoche && serviceCtrl.codePromoSaisi">
 		Remise : {{serviceCtrl.remise}}<span class="ng-binding ng-scope" ng-show="serviceCtrl.promoError">Code invalide</span><br>
-		Total avec remise :  {{serviceCtrl.prixAvecRemise}}<span class="ng-binding"></span>
+		<span ng-show="!serviceCtrl.promoError">Total avec remise :  {{serviceCtrl.prixAvecRemise}}<span class="ng-binding"></span>
 	</div>
 </form></div>
 	</div>
