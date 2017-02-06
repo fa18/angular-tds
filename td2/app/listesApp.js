@@ -1,0 +1,1 @@
+var choixMult = angular.module("TD2",[]);

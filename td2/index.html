@@ -1,0 +1,96 @@
+
+</meta>
+</!DOCTYPE html>
+<html>
+	<head>
+		<title>Choix multiples</title>
+
+		<meta charset="UTF-8">
+
+			
+			
+			<link rel="icon" type="image/png" href="https://docs.angularjs.org/favicon.ico">
+			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/styles.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/prism.css">
+
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+			<script async="" type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+
+			<script type="text/javascript" src="http://angular.kobject.net/js/lib/jquery-ui.min.js"></script>
+
+			<script src="servicesApp.js"></script>
+		    <script src="servicesController.js"></script>
+
+
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body ng-app="TD2" ng-controller="choixMultController as cMuCtrl">
+
+
+		<div class="container">
+			<div ng-show="isRunning()" class="panel panel default" style="">
+				
+
+			<!-- ngView:  --><div ng-view="" class="toggle ng-scope" style="">	<form class="img-rounded ng-pristine ng-valid ng-scope" id="choixMultiples">
+			<div ng-show="cMuCtrl.step==1" class="">
+			<h1>Sélectionnez vos produits</h1>
+			<div class="form-group">
+				<div class="inline-block">
+					<label>Produits disponibles : <select title="Double-cliquez pour ajouter" class="form-control ng-pristine ng-untouched ng-valid" size="10" multiple="multiple" ng-model="cMuCtrl.selectDispoItems">
+					<option ng-repeat="item in cMuCtrl.dispoItems" value="{{$index}}">{{item.title}} </option>
+					</select>
+					</label>
+					
+					<div>
+						<ng-pluralize count="includedItems.length" when="{0:'Aucun produit à inclure',
+											1:'1 produit inclus',
+											'other':'{} produits inclus'}">Aucun produit à inclure</ng-pluralize>
+					</div>
+					
+
+				</div>
+				<!--boutons-->
+				<div class="inline-block">
+					<div title="Ajouter" class="btn btn-primary list-btn" ng-click="addToIncluded()" ng-disabled="selectedDispoItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span></div>
+					<div title="Ajouter tous" class="btn btn-primary list-btn" ng-click="addAllToIncluded()" ng-disabled="dispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></div>
+					<div title="Retirer" class="btn btn-primary list-btn" ng-click="removeFromIncluded()" ng-disabled="selectedIncludedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></div> 
+					<div title="Retirer tous" class="btn btn-primary list-btn" ng-click="removeAllFromIncluded()" ng-disabled="includedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-fast-backward"></span></div>
+				</div>
+
+
+				<div class="inline-block">
+					<label>Produits à inclure : <select title="Double-cliquez pour ajouter" class="form-control ng-pristine ng-untouched ng-valid" ng-model="selectedIncludedItems" ng-dblclick="deselectItem()" ng-options="item.title for item in includedItems" size="10" multiple="multiple" ng-model="cMuCtrl.selectedIncludedItems">>
+						<option ng-repeat="item in cMuCtrl.incluedItems" value="{{$index}}">{{item.title}}</option>
+
+					</select>
+					</label> 
+				</div>
+			</div>
+			<div><div class="btn btn-primary" style="width:98%;text-align: right" ng-click="cMuCtrl.step=2" ng-disabled="includedItems.length<1" disabled="disabled">
+				<span>Etape suivante    </span><span aria-hidden="true" class="glyphicon glyphicon-circle-arrow-right"></span>
+			</div></div>
+			</div>
+			<div ng-show="cMuCtrl.step==2" class="ng-hide">
+				<h1>Votre choix</h1>
+				<ul>
+					<!-- ngRepeat: item in includedItems -->
+				</ul>
+				<div><div class="btn btn-primary" style="width:98%;text-align: right;margin-top:5px" ng-click="cMuCtrl.step=1">
+					<span aria-hidden="true" class="glyphicon glyphicon-circle-arrow-left"></span>
+					<span>     Retour au choix précédent</span>
+				</div></div>
+			</div>
+		</form></div>
+		</div>
+
+	</body>
+</html>
