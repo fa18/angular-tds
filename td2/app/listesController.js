@@ -57,9 +57,9 @@ choixMultController.controller('choixMultController', function($http){
 	//Ajoute les produits disponibles en surbrillance (selectedDispoItems) à la liste des produits à inclure (includedItems)
 	this.addToIncluded = function(){
         angular.forEach(self.selectedDispoItems,function(element){
-            i = self.dispoItems.indexOf(element); 
-            self.includedItems.push(self.dispoItems[i]);
-            self.dispoItems.splice(i,1);
+            i = self.dispoItems.indexOf(element); //index de l'element dans l'array
+            self.includedItems.push(self.dispoItems[i]); //ajout de l'element
+            self.dispoItems.splice(i,1);// supression  de count elements à partir de start index
         });
 
 	}
