@@ -1,6 +1,7 @@
-var choixMult = angular.module("TD2",[]);
+var choixMultController = angular.module("TD2",[]);
 
-choixMult.controller('choixMultController', function($http){
+choixMultController.controller('choixMultController', function($http){
+    var self = this;
 
 	//Tableau des produits disponibles défini en JSON (utiliser le service $http)
 	this.dispoItems = [
@@ -42,24 +43,31 @@ choixMult.controller('choixMultController', function($http){
     ]; 
 	
 	//Tableau des produits à inclure
-	this.includedItems = {
-	}; 
+	this.includedItems = [{
+            "url": "http://tutorialzine.com/2013/07/50-must-have-plugins-for-extending-twitter-bootstrap/",
+            "title": "50 Must-have plugins for extending Twitter Bootstrap",
+            "image": "http://cdn.tutorialzine.com/wp-content/uploads/2013/07/featured_4-100x100.jpg"
+        }]; 
 
 	 //Tableau des éléments sélectionnés dans la liste des produits disponibles
-	this.selectedDispoItems = {
-
-	};
+	this.selectedDispoItems = [];
 
 	//Tableau des éléments sélectionnés dans la liste des produits à inclure
-	this.selectedIncludedItems = {
-
-	};
+	this.selectedIncludedItems = [];
 	 
 	this.step=1; //Variable d'état agissant sur les vues et prenant les valeurs 1 : choix des produits ou 2 : visualisation du choix
 
 	
 	//Ajoute les produits disponibles en surbrillance (selectedDispoItems) à la liste des produits à inclure (includedItems)
 	this.addToIncluded = function(){
+        console.log("passe ici");
+        console.log(self.selectedDispoItems);
+        angular.forEach(self.selectedDispoItems,function(element){
+            console.log("passe ici");
+            nb = self.dispoItems.indexOf(element);
+            self.includedItems.push(self.dispoItems[nb]);
+            self.dispoItems.splice(nb,1);
+        });
 
 	}
 

@@ -25,8 +25,8 @@
 
 			<script type="text/javascript" src="http://angular.kobject.net/js/lib/jquery-ui.min.js"></script>
 
-			<script src="servicesApp.js"></script>
-		    <script src="servicesController.js"></script>
+			<script src="app/listesApp.js"></script>
+		   	<script src="app/listesController.js"></script>
 
 
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +37,7 @@
 
 
 		<div class="container">
-			<div ng-show="isRunning()" class="panel panel default" style="">
+			<div  class="panel panel default" style="">
 				
 
 			<!-- ngView:  --><div ng-view="" class="toggle ng-scope" style="">	<form class="img-rounded ng-pristine ng-valid ng-scope" id="choixMultiples">
@@ -45,8 +45,7 @@
 			<h1>Sélectionnez vos produits</h1>
 			<div class="form-group">
 				<div class="inline-block">
-					<label>Produits disponibles : <select title="Double-cliquez pour ajouter" class="form-control ng-pristine ng-untouched ng-valid" size="10" multiple="multiple" ng-model="cMuCtrl.selectDispoItems">
-					<option ng-repeat="item in cMuCtrl.dispoItems" value="{{$index}}">{{item.title}} </option>
+					<label>Produits disponibles : <select title="Double-cliquez pour ajouter" class="form-control ng-pristine ng-untouched ng-valid" size="10" multiple="multiple" ng-options="item.title for item in cMuCtrl.dispoItems" ng-model="cMuCtrl.selectedDispoItems">
 					</select>
 					</label>
 					
@@ -60,16 +59,16 @@
 				</div>
 				<!--boutons-->
 				<div class="inline-block">
-					<div title="Ajouter" class="btn btn-primary list-btn" ng-click="addToIncluded()" ng-disabled="selectedDispoItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span></div>
-					<div title="Ajouter tous" class="btn btn-primary list-btn" ng-click="addAllToIncluded()" ng-disabled="dispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></div>
-					<div title="Retirer" class="btn btn-primary list-btn" ng-click="removeFromIncluded()" ng-disabled="selectedIncludedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></div> 
-					<div title="Retirer tous" class="btn btn-primary list-btn" ng-click="removeAllFromIncluded()" ng-disabled="includedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-fast-backward"></span></div>
+					<div title="Ajouter" class="btn btn-primary list-btn" ng-click="cMuCtrl.addToIncluded()" ng-disabled="selectedDispoItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span></div>
+					<div title="Ajouter tous" class="btn btn-primary list-btn" ng-click="cMuCtrl.addAllToIncluded()" ng-disabled="dispoItems.length<1"><span aria-hidden="true" class="glyphicon glyphicon-fast-forward"></span></div>
+					<div title="Retirer" class="btn btn-primary list-btn" ng-click="cMuCtrl.removeFromIncluded()" ng-disabled="selectedIncludedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span></div> 
+					<div title="Retirer tous" class="btn btn-primary list-btn" ng-click="cMuCtrl.removeAllFromIncluded()" ng-disabled="includedItems.length<1" disabled="disabled"><span aria-hidden="true" class="glyphicon glyphicon-fast-backward"></span></div>
 				</div>
 
 
 				<div class="inline-block">
-					<label>Produits à inclure : <select title="Double-cliquez pour ajouter" class="form-control ng-pristine ng-untouched ng-valid" ng-model="selectedIncludedItems" ng-dblclick="deselectItem()" ng-options="item.title for item in includedItems" size="10" multiple="multiple" ng-model="cMuCtrl.selectedIncludedItems">>
-						<option ng-repeat="item in cMuCtrl.incluedItems" value="{{$index}}">{{item.title}}</option>
+					<label>Produits à inclure : <select title="Double-cliquez pour ajouter" class="form-control ng-pristine ng-untouched ng-valid"  ng-dblclick="deselectItem()"  size="10" multiple="multiple" ng-options="item.title for item in cMuCtrl.includedItems" ng-model="cMuCtrl.selectIncludedItems">
+						
 
 					</select>
 					</label> 

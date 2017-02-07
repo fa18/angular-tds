@@ -1,1 +1,1 @@
-var choixMult = angular.module("TD2",[]);
+var choixMultController = angular.module("TD2",[]);
