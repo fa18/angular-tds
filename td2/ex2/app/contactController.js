@@ -32,7 +32,7 @@ contactApp.controller('contactController', ["$http",function($http){
 	this.operation;
 
 	//Contrôle l'affichage du formulaire d'ajout/modification
-	this.edit;
+	this.edit=0;
 
 	//Affiche le formulaire de modification du contact
 	this.toUpdate=function(contact){
@@ -41,6 +41,7 @@ contactApp.controller('contactController', ["$http",function($http){
 
 	//Affiche le formulaire d'ajout d'un contact
 	this.toAdd = function(){
+		this.edit=1;
 
 	}
 

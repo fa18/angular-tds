@@ -55,21 +55,21 @@
 			
 			</tr>
 		<tr><td colspan="4">
-			<a id="add" href="" data-ng-click="toAdd()" class="btn btn-primary">Ajouter...</a>
+			<a id="add" href="" data-ng-click="contCtrl.toAdd()" class="btn btn-primary">Ajouter...</a>
 			<a id="add" href="" data-ng-show="results.length<contacts.length &amp;&amp; !q" data-ng-click="cancelOne()" class="btn btn-danger ng-hide">
 			<data-ng-pluralize count="contacts.length-results.length" when="{'one': 'Annuler la suppression.',
                      'other': 'Annuler les suppressions ({}) .'}">Annuler les suppressions (3) .</data-ng-pluralize>
 			</a></td></tr>
 	</tbody></table>
 </div>
-	<frm-contact-elem>	<fieldset style="" data-ng-show="contCtrl.edit" class="container form-group form-inline">
+	<frm-contact-elem>	<fieldset style="" data-ng-show="contCtrl.edit==1" class="container form-group form-inline">
 		<legend class="ng-binding">Ajouter un contact</legend>
 		<form class="ng-pristine ng-invalid ng-invalid-required ng-valid-email" name="frmContact" data-ng-submit="frmContact.$valid &amp;&amp; update()" novalidate="">
 			<input class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" data-ng-model="tmpContact.nom" placeholder="Entrez un nom..." required="" type="text">
 			<input class="form-control ng-pristine ng-untouched ng-valid" data-ng-model="tmpContact.prenom" placeholder="Prénom..." type="text">
 			<input class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" data-ng-model="tmpContact.email" placeholder="Adresse email..." required="" type="email">
 			<input value="Valider" class="btn btn-primary" type="submit">
-			<input value="Annuler" data-ng-click="edit=false" class="btn btn-primary" type="button">
+			<input value="Annuler" data-ng-click="contCtrl.edit=0" class="btn btn-primary" type="button">
 		</form>
 	</fieldset></frm-contact-elem>
 		<div class="container"><data-ng-pluralize count="results.length" when="{'0': 'Aucun résultat.',
