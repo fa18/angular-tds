@@ -26,27 +26,55 @@ contactApp.controller('contactController', ["$http",function($http){
 	this.contact;
 
 	//Variable contenant le contact modifié par le formulaire
-	this.tmpContact;
+	this.tmpContact = [
+		{
+            "nom": "",
+            "prenom": "",
+            "adresse": ""
+        }
+        ];
 
 	//Chaîne indiquant la modification ou l'ajout d'un contact
-	this.operation;
+	this.operation="";
 
 	//Contrôle l'affichage du formulaire d'ajout/modification
-	this.edit=0;
+	this.edit=false;
 
 	//Affiche le formulaire de modification du contact
 	this.toUpdate=function(contact){
 
+		this.operation="Modification";
 	}
 
 	//Affiche le formulaire d'ajout d'un contact
 	this.toAdd = function(){
-		this.edit=1;
+		this.edit=true;
+		this.operation="Ajout";
 
 	}
 
 	//Ajoute le contact
 	this.add = function(){
+		if (self.operation == "Ajout") {
+            self.contacts.push(self.tmpContact);
+            self.tmpContact = [
+			{
+	            "nom": "",
+	            "prenom": "",
+	            "adresse": ""
+	        }
+        ];
+        } else {
+            self.tmpContact = [
+			{
+	            "nom": "",
+	            "prenom": "",
+	            "adresse": ""
+	        }
+	        ];
+
+            self.operation = "";
+        }
 
 	}
 
@@ -61,3 +89,10 @@ contactApp.controller('contactController', ["$http",function($http){
 	}
 
 }]);
+
+	angular.module("TD2").directive('frmContactElem', function() {
+    return {
+    	restrict:"E",
+        templateUrl: 'app/frmContacts.html'
+    };
+	});
