@@ -44,7 +44,8 @@
 	<input style="" placeholder="Filtrer..." data-ng-model="q" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" type="text">
 	<table class="table table-striped" id="lstContact">
 		<tbody ><!-- ngRepeat: contact in contacts |NotDeletedFilter |filter:q as results -->
-			<tr ng-repeat="contact in contCtrl.contacts":  > <!--ng-options="contact.nom for contact in contCtrl.contacts" ng-model="contCtrl.contacts" -->
+			<!--<tr contact-elem class="animate-repeat ng-scope" data-ng-repeat="contact in contCtrl.contacts |NotDeletedFilter |filter:q as results">-->
+			<tr ng-repeat="contact in contCtrl.contacts":  > <!--ng-options="contact.nom for contact in contCtrl.contacts" ng-model="contCtrl.contacts" --> <!-- Mettre la directive dans le controleur-->
 						<td>{{contact.nom}}</td>
 						<td>{{contact.prenom}}</td>
 						<td>{{contact.adresse}}</td>
