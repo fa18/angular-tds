@@ -55,6 +55,7 @@ contactApp.controller('contactController', ["$http",function($http){
 
 	//Ajoute le contact
 	this.add = function(){
+		console.log(self.tmpContact);
 		if (self.operation == "Ajout") {
             self.contacts.push(self.tmpContact);
             self.tmpContact = [
