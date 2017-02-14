@@ -1,0 +1,88 @@
+
+</meta>
+</!DOCTYPE html>
+<html ng-app="TD2" >
+	<head>
+		<title>Gestion des contacts</title>
+
+		<meta charset="UTF-8">
+
+			
+			
+			<link rel="icon" type="image/png" href="https://docs.angularjs.org/favicon.ico">
+			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/styles.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/prism.css">
+
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+			<script async="" type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+
+			<script type="text/javascript" src="http://angular.kobject.net/js/lib/jquery-ui.min.js"></script>
+
+			<script src="app/ContactApp.js"></script>
+		   	<script src="app/contactController.js"></script>
+
+
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body ng-controller="contactController as contCtrl">
+	</br>
+	<div class="container">	
+
+		<!-- ngView:  --><div style="" ng-view="" class="toggle ng-scope"><div class="ng-scope" id="contact">
+<div class="panel panel-primary">
+	<div class="panel-heading">Contacts</div>
+	<div class="panel-body">
+	<input style="" placeholder="Filtrer..." data-ng-model="q" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" type="text">
+	<table class="table table-striped" id="lstContact">
+		<tbody ><!-- ngRepeat: contact in contacts |NotDeletedFilter |filter:q as results -->
+			<tr ng-repeat="contact in contCtrl.contacts":  > <!--ng-options="contact.nom for contact in contCtrl.contacts" ng-model="contCtrl.contacts" -->
+						<td>{{contact.nom}}</td>
+						<td>{{contact.prenom}}</td>
+						<td>{{contact.adresse}}</td>
+						<td>
+							<a class="btn btn-info btn-xs" href="" data-ng-click="toUpdate(contact)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
+							<a class="btn btn-danger btn-xs" href="" data-ng-click="delete(contact)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+						</td>	
+			
+			</tr>
+		<tr><td colspan="4">
+			<a id="add" href="" data-ng-click="toAdd()" class="btn btn-primary">Ajouter...</a>
+			<a id="add" href="" data-ng-show="results.length<contacts.length &amp;&amp; !q" data-ng-click="cancelOne()" class="btn btn-danger ng-hide">
+			<data-ng-pluralize count="contacts.length-results.length" when="{'one': 'Annuler la suppression.',
+                     'other': 'Annuler les suppressions ({}) .'}">Annuler les suppressions (3) .</data-ng-pluralize>
+			</a></td></tr>
+	</tbody></table>
+</div>
+	<frm-contact-elem>	<fieldset style="" data-ng-show="contCtrl.edit" class="container form-group form-inline">
+		<legend class="ng-binding">Ajouter un contact</legend>
+		<form class="ng-pristine ng-invalid ng-invalid-required ng-valid-email" name="frmContact" data-ng-submit="frmContact.$valid &amp;&amp; update()" novalidate="">
+			<input class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" data-ng-model="tmpContact.nom" placeholder="Entrez un nom..." required="" type="text">
+			<input class="form-control ng-pristine ng-untouched ng-valid" data-ng-model="tmpContact.prenom" placeholder="Prénom..." type="text">
+			<input class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" data-ng-model="tmpContact.email" placeholder="Adresse email..." required="" type="email">
+			<input value="Valider" class="btn btn-primary" type="submit">
+			<input value="Annuler" data-ng-click="edit=false" class="btn btn-primary" type="button">
+		</form>
+	</fieldset></frm-contact-elem>
+		<div class="container"><data-ng-pluralize count="results.length" when="{'0': 'Aucun résultat.',
+                     'one': '1 contact trouvé.',
+                     'other': '{} contacts trouvés.'}">Aucun résultat.</data-ng-pluralize>
+	</div>
+</div>
+</div></div>
+	</div>
+
+
+
+
+	</body>
+</html>
+	
