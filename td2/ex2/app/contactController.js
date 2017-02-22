@@ -42,8 +42,11 @@ contactApp.controller('contactController', ["$http",function($http){
 
 	//Affiche le formulaire de modification du contact
 	this.toUpdate=function(contact){
-
+		this.edit=true;
 		this.operation="Modification";
+		console.log(contact);
+		self.tmpContact = contact;
+		console.log(self.tmpContact);
 	}
 
 	//Affiche le formulaire d'ajout d'un contact
@@ -81,7 +84,7 @@ contactApp.controller('contactController', ["$http",function($http){
 
 	//Met à jour la liste des contacts après validation du formulaire (ajout ou modif)
 	this.update = function(){
-
+		
 	}
 
 	//Supprime de la liste le contact
@@ -91,7 +94,7 @@ contactApp.controller('contactController', ["$http",function($http){
 
 }]);
 	
-	angular.module("TD2").directive('contacts', function() {
+	angular.module("TD2").directive('contactsEleme', function() {
     return {
     	restrict:"E",
         templateUrl: 'app/contacts.html'
