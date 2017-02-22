@@ -59,15 +59,15 @@
 			</tr>
 
 		<tr><td colspan="4">
-			<a id="add" href="" data-ng-click="contCtrl.toAdd() || contCtrl.toUpdate()" class="btn btn-primary">Ajouter...</a>
+			<a id="add" href="" data-ng-click="contCtrl.toAdd()" class="btn btn-primary">Ajouter...</a>
 			<a id="add" href="" data-ng-show="results.length<contacts.length &amp;&amp; !q" data-ng-click="cancelOne()" class="btn btn-danger ng-hide">
-			<data-ng-pluralize count="contacts.length-results.length" when="{'one': 'Annuler la suppression.',
+			<data-ng-pluralize count="contCtrl.contacts.length-results.length" when="{'one': 'Annuler la suppression.',
                      'other': 'Annuler les suppressions ({}) .'}">Annuler les suppressions (3) .</data-ng-pluralize>
 			</a></td></tr>
 	</tbody></table>
 </div>
 	<frm-contact-elem></frm-contact-elem>
-		<div class="container"><data-ng-pluralize count="contCtrl.results.length" when="{'0': 'Aucun résultat.',
+		<div class="container"><data-ng-pluralize count="contCtrl.contacts.length" when="{'0': 'Aucun résultat.',
                      'one': '1 contact trouvé.',
                      'other': '{} contacts trouvés.'}">Aucun résultat.</data-ng-pluralize>
 	</div>
