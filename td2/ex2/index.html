@@ -50,14 +50,14 @@
 			<tr ng-repeat="contact in contCtrl.contacts | orderBy: 'nom' | filter: searchText"":  >  <!-- Mettre la directive dans le controleur-->
 						<td>{{contact.nom}}</td>
 						<td>{{contact.prenom}}</td>
-						<td>{{contact.adresse}}</td>
+						<td>{{contact.email}}</td>
 						<td>
-							<a class="btn btn-info btn-xs" href="" data-ng-click="toUpdate(contact)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
-							<a class="btn btn-danger btn-xs" href="" data-ng-click="delete(contact)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+							<a class="btn btn-info btn-xs" href="" data-ng-click="contCtrl.toUpdate(contact)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
+							<a class="btn btn-danger btn-xs" href="" data-ng-click="contCtrl.delete(contact)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
 						</td>	
 			
 			</tr>
-			
+
 		<tr><td colspan="4">
 			<a id="add" href="" data-ng-click="contCtrl.toAdd()" class="btn btn-primary">Ajouter...</a>
 			<a id="add" href="" data-ng-show="results.length<contacts.length &amp;&amp; !q" data-ng-click="cancelOne()" class="btn btn-danger ng-hide">
@@ -67,7 +67,7 @@
 	</tbody></table>
 </div>
 	<frm-contact-elem></frm-contact-elem>
-		<div class="container"><data-ng-pluralize count="results.length" when="{'0': 'Aucun résultat.',
+		<div class="container"><data-ng-pluralize count="contCtrl.results.length" when="{'0': 'Aucun résultat.',
                      'one': '1 contact trouvé.',
                      'other': '{} contacts trouvés.'}">Aucun résultat.</data-ng-pluralize>
 	</div>

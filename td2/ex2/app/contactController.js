@@ -8,17 +8,17 @@ contactApp.controller('contactController', ["$http",function($http){
 		{
             "nom": "ZUCKERBERG",
             "prenom": "Mark",
-            "adresse": "mark@facebook.com"
+            "email": "mark@facebook.com"
         },
         {
             "nom": "GATES",
             "prenom": "Bill",
-            "adresse": "bill@microsoft.com"
+            "email": "bill@microsoft.com"
         },
         {
             "nom": "JOBS",
             "prenom": "Steeve",
-            "adresse": "Steeve@apple.com"
+            "email": "Steeve@apple.com"
         }
 	] ;
 
@@ -30,7 +30,7 @@ contactApp.controller('contactController', ["$http",function($http){
 		{
             "nom": "",
             "prenom": "",
-            "adresse": ""
+            "email": ""
         }
         ];
 
@@ -62,7 +62,7 @@ contactApp.controller('contactController', ["$http",function($http){
 			{
 	            "nom": "",
 	            "prenom": "",
-	            "adresse": ""
+	            "email": ""
 	        }
         ];
         } else {
@@ -70,7 +70,7 @@ contactApp.controller('contactController', ["$http",function($http){
 			{
 	            "nom": "",
 	            "prenom": "",
-	            "adresse": ""
+	            "email": ""
 	        }
 	        ];
 
