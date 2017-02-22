@@ -90,6 +90,13 @@ contactApp.controller('contactController', ["$http",function($http){
 	}
 
 }]);
+	
+	angular.module("TD2").directive('contacts', function() {
+    return {
+    	restrict:"E",
+        templateUrl: 'app/contacts.html'
+    };
+	});
 
 	angular.module("TD2").directive('frmContactElem', function() {
     return {

@@ -23,6 +23,8 @@
 			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
 
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.15/angular-filter.min.js"></script>
+
 			<script type="text/javascript" src="http://angular.kobject.net/js/lib/jquery-ui.min.js"></script>
 
 			<script src="app/ContactApp.js"></script>
@@ -41,11 +43,11 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">Contacts</div>
 	<div class="panel-body">
-	<input style="" placeholder="Filtrer..." data-ng-model="q" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" type="text">
+	<input style="" placeholder="Filtrer..." ng-model="searchText" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" type="text">
 	<table class="table table-striped" id="lstContact">
-		<tbody ><!-- ngRepeat: contact in contacts |NotDeletedFilter |filter:q as results -->
-			<!--<tr contact-elem class="animate-repeat ng-scope" data-ng-repeat="contact in contCtrl.contacts |NotDeletedFilter |filter:q as results">-->
-			<tr ng-repeat="contact in contCtrl.contacts":  > <!--ng-options="contact.nom for contact in contCtrl.contacts" ng-model="contCtrl.contacts" --> <!-- Mettre la directive dans le controleur-->
+		<tbody >
+
+			<tr ng-repeat="contact in contCtrl.contacts | orderBy: 'nom' | filter: searchText"":  >  <!-- Mettre la directive dans le controleur-->
 						<td>{{contact.nom}}</td>
 						<td>{{contact.prenom}}</td>
 						<td>{{contact.adresse}}</td>
@@ -55,6 +57,7 @@
 						</td>	
 			
 			</tr>
+			
 		<tr><td colspan="4">
 			<a id="add" href="" data-ng-click="contCtrl.toAdd()" class="btn btn-primary">Ajouter...</a>
 			<a id="add" href="" data-ng-show="results.length<contacts.length &amp;&amp; !q" data-ng-click="cancelOne()" class="btn btn-danger ng-hide">
