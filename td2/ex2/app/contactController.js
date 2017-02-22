@@ -22,6 +22,9 @@ contactApp.controller('contactController', ["$http",function($http){
         }
 	] ;
 
+	// tableau des contacs existant - ceux supprimés temporairement
+	this.results = []; 
+
 	//Variable contenant le contact à modifier
 	this.contact;
 
@@ -87,9 +90,15 @@ contactApp.controller('contactController', ["$http",function($http){
 		
 	}
 
+	this.toDelete = function(contact){
+		        self.results.push(contact);
+				contact.deleted = true;
+	}
+
 	//Supprime de la liste le contact
 	this.delete = function(contact){
-		
+		console.log("supprime");
+
 	}
 
 }]);
