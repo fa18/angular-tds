@@ -8,22 +8,27 @@ contactApp.controller('contactController', ["$http",function($http){
 		{
             "nom": "ZUCKERBERG",
             "prenom": "Mark",
-            "email": "mark@facebook.com"
+            "email": "mark@facebook.com",
+            "deleted": "false"
         },
         {
             "nom": "GATES",
             "prenom": "Bill",
-            "email": "bill@microsoft.com"
+            "email": "bill@microsoft.com",
+            "deleted": "false"
         },
         {
             "nom": "JOBS",
             "prenom": "Steeve",
-            "email": "Steeve@apple.com"
+            "email": "Steeve@apple.com",
+            "deleted": "false"
         }
 	] ;
 
 	// tableau des contacs existant - ceux supprimés temporairement
 	this.results = []; 
+
+	this.suprItems = [];
 
 	//Variable contenant le contact à modifier
 	this.contact;
@@ -33,7 +38,8 @@ contactApp.controller('contactController', ["$http",function($http){
 		{
             "nom": "",
             "prenom": "",
-            "email": ""
+            "email": "",
+            "deleted": "false"
         }
         ];
 
@@ -43,7 +49,7 @@ contactApp.controller('contactController', ["$http",function($http){
 	//Contrôle l'affichage du formulaire d'ajout/modification
 	this.edit=false;
 
-	this.valider=false;
+
 
 	//Affiche le formulaire de modification du contact
 	this.toUpdate=function(contact){
@@ -67,13 +73,15 @@ contactApp.controller('contactController', ["$http",function($http){
 			{
 	            "nom": "",
 	            "prenom": "",
-	            "email": ""
+	            "email": "",
+	            "deleted": "false"
 	        }
         ];
         this.edit=false;
 	}	
 	//Ajoute le contact
 	this.add = function(){
+		self.tmpContact.deleted="false";
 		console.log(self.tmpContact);
 		console.log(this.operation);
 		if (self.operation == "Ajout") {
@@ -99,14 +107,35 @@ contactApp.controller('contactController', ["$http",function($http){
 	}
 
 	this.toDelete = function(contact){
-		        self.results.push(contact);
-				contact.deleted = true;
+		console.log(contact);
+		console.log("toDelete");
+		this.operation="Suppression";
+
+		console.log(contact);
+		console.log("deleted : "+contact.deleted);
+		contact.deleted = "true";
+		console.log("deleted : "+contact.deleted);
+		this.suprItems.push(contact); 
+		//console.log("deleted : "+this.suprItems.deleted); // pas logique : undefined
+		console.log(self.suprItems);
+		console.log(this.contacts);
+		
+
+		angular.forEach(self.contacts,function(element){
+			if (contact.deleted == "true") {
+				console.log("coucou");
+            	i = self.contacts.indexOf(element); 
+            	//self.suprItems.push(self.contacts[i]);
+            	self.contacts.splice(i+1,1);
+        	}
+		});
+				
 	}
 
 	//Supprime de la liste le contact
 	this.delete = function(contact){
-		console.log("supprime");
-
+		console.log("delete");
+		
 	}
 
 }]);
