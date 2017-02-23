@@ -43,6 +43,8 @@ contactApp.controller('contactController', ["$http",function($http){
 	//Contrôle l'affichage du formulaire d'ajout/modification
 	this.edit=false;
 
+	this.valider=false;
+
 	//Affiche le formulaire de modification du contact
 	this.toUpdate=function(contact){
 		this.edit=true;
@@ -59,28 +61,34 @@ contactApp.controller('contactController', ["$http",function($http){
 
 	}
 
-	//Ajoute le contact
-	this.add = function(){
-		console.log(self.tmpContact);
-		if (self.operation == "Ajout") {
-            self.contacts.push(self.tmpContact);
-            self.tmpContact = [
+	//contact temporaire = vierge
+	this.vierge = function(){
+		self.tmpContact = [
 			{
 	            "nom": "",
 	            "prenom": "",
 	            "email": ""
 	        }
         ];
-        } else {
-            self.tmpContact = [
-			{
-	            "nom": "",
-	            "prenom": "",
-	            "email": ""
-	        }
-	        ];
+        this.edit=false;
+	}	
+	//Ajoute le contact
+	this.add = function(){
+		console.log(self.tmpContact);
+		console.log(this.operation);
+		if (self.operation == "Ajout") {
+            self.contacts.push(self.tmpContact);
+            this.vierge();
+        
+        } else {  //lors de la modification ,modifie directement lorsqu'on tappe
+        	console.log(this.operation);
+        	//ne passe pas ici si on annule
+	        this.vierge();
 
-            self.operation = "";
+	        console.log(self.tmpContact);
+            self.operation= "";
+            console.log(this.operation);
+
         }
 
 	}
