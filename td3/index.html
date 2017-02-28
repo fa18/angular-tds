@@ -1,0 +1,101 @@
+
+<meta>
+<!DOCTYPE html>
+<html ng-app="TD3" >
+	<head>
+		<title>Devise</title>
+
+		<meta charset="UTF-8">
+
+			
+			
+			<link rel="icon" type="image/png" href="https://docs.angularjs.org/favicon.ico">
+			<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/styles.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/css.css">
+			<link rel="stylesheet" href="http://angular.kobject.net/css/prism.css">
+
+			<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+			<script async="" type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+			<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.15/angular-filter.min.js"></script>
+
+			<script type="text/javascript" src="http://angular.kobject.net/js/lib/jquery-ui.min.js"></script>
+
+			<script src="app/currencyApp.js"></script>
+		   	<script src="app/currencyController.js"></script>
+
+
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body ng-controller="currencyController as curCtrl">
+	</br>
+	<div class="container">	
+	
+	<div class="panel panel-primary" data-ngcloak="">
+		<div class="panel-heading">Ex 3 : Currency Application</div>
+		<div class="panel-body">
+			<form class="form-group form-inline ng-pristine ng-valid" ng-keypress="$event.keyCode == 13 ? getResult() : null">
+				<input data-ng-model="curCtrl.what" class="form-control ng-pristine ng-untouched ng-valid" size="5" type="text">
+
+				<select data-ng-model="from" data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.from" class="form-control ng-pristine ng-untouched ng-valid"></select>
+					<a href="#" data-ng-click="curCtrl.swap()"><=></a>
+				<!--	<option value="object:89" label="CAD - Canadian Dollar">CAD - Canadian Dollar</option></select>-->
+				<select data-ng-model="from" data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.from" class="form-control ng-pristine ng-untouched ng-valid">
+				<input value="Convertir" class="btn btn-primary" data-ng-click="getResult()" type="button">
+
+				<input data-ng-model="result.value" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" size="5" type="text">
+
+				<div class="checkbox"><label><input class="ng-pristine ng-untouched ng-valid" data-ng-model="histo" type="checkbox">&nbsp;Historique</label></div>
+
+			</form>
+		</div>
+		<div class="container-fluid">
+			<div data-ng-show="histoNotEmpty() &amp;&amp; histo" class="panel panel-default ng-hide">
+				<div class="panel-body">
+					<table class="table table-striped" id="lstHisto" style="table-layout:fixed;width: 100%">
+						<tbody><tr>
+							<th>De</th>
+							<th>En</th>
+							<th class="text-center">Tx</th>
+							<th class="text-center">Montant</th>
+							<th class="text-center">Date</th>
+							<th class="text-center">Delta</th>
+							<th></th>
+						</tr>
+						<!-- ngRepeat: (id,conversion) in historique -->
+						<tr>
+							<td colspan="7">
+								<form class="form-inline ng-pristine ng-valid">
+									<div class="input-group">
+										<span class="input-group-addon">
+											<input class="ng-pristine ng-untouched ng-valid" data-ng-model="autoRefresh" data-ng-change="startRefresh(autoRefresh)" title="Auto-refresh" type="checkbox">
+										</span>
+										<input data-ng-model="interval" class="form-control ng-pristine ng-untouched ng-valid" data-ng-change="updateFrequency()" data-ng-model-options="{debounce: 3000}" type="number">
+										<span class="input-group-btn">
+										<button class="btn btn-primary" data-ng-click="refresh()"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+										</span>
+									</div>
+								</form>
+							</td>
+						</tr>
+					</tbody></table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	</div>
+	</body>
+</html>
+	
