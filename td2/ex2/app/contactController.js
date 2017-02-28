@@ -121,14 +121,14 @@ contactApp.controller('contactController', ["$http",function($http){
 		console.log(this.contacts);
 		
 
-		angular.forEach(self.contacts,function(element){
+		/*angular.forEach(self.contacts,function(element){
 			if (contact.deleted == "true") {
 				console.log("coucou");
             	i = self.contacts.indexOf(element); 
             	//self.suprItems.push(self.contacts[i]);
             	self.contacts.splice(i+1,1);
         	}
-		});
+		});*/
 				
 	}
 
@@ -137,6 +137,17 @@ contactApp.controller('contactController', ["$http",function($http){
 		console.log("delete");
 		
 	}
+
+	this.update = function(){
+        if(self.contact != null){
+            var index = self.contacts.indexOf(self.contact);
+            self.contacts[index] = self.tmpContact;
+            console.log(index);
+            self.edit = 0;
+        } else {
+            self.contacts.push(self.tmpContact);
+        }
+    };
 
 }]);
 	
@@ -152,4 +163,17 @@ contactApp.controller('contactController', ["$http",function($http){
     	restrict:"E",
         templateUrl: 'app/frmContacts.html'
     };
+	});
+
+	contactApp.filter("deletedCheck", function() {
+	    return function (contacts) {
+	        var nouvelleList = [];
+	        angular.forEach(contacts, function(contact) {
+	            console.log(contact);
+	            if(contact.deleted == "false") {
+	                nouvelleList.push(contact);
+	            }
+	        });
+	        return nouvelleList;
+	    };
 	});

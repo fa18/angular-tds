@@ -47,7 +47,7 @@
 	<table class="table table-striped" id="lstContact">
 		<tbody >
 
-			<tr ng-repeat="contact in contCtrl.contacts | orderBy: 'nom' | filter: searchText"":  >  <!-- Mettre la directive dans le controleur-->
+			<tr ng-repeat="contact in contCtrl.contacts | orderBy: 'nom' | deletedCheck | filter: searchText"":  ">  <!-- Mettre la directive dans le controleur-->
 						<td>{{contact.nom}}</td>
 						<td>{{contact.prenom}}</td>
 						<td>{{contact.email}}</td>
