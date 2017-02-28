@@ -43,31 +43,35 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">Contacts</div>
 	<div class="panel-body">
-	<input style="" placeholder="Filtrer..." ng-model="searchText" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched" type="text">
-	<table class="table table-striped" id="lstContact">
-		<tbody >
-
-			<tr ng-repeat="contact in contCtrl.contacts | orderBy: 'nom' | deletedCheck | filter: searchText"":  ">  <!-- Mettre la directive dans le controleur-->
-						<td>{{contact.nom}}</td>
-						<td>{{contact.prenom}}</td>
-						<td>{{contact.email}}</td>
-						<td>
-							<a class="btn btn-info btn-xs" href="" data-ng-click="contCtrl.toUpdate(contact)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
-							<a class="btn btn-danger btn-xs" href="" data-ng-click="contCtrl.toDelete(contact)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
-						</td>	
-			<!--<contacts-elem></contacts-elem> -->
-			</tr>
-
-		<tr><td colspan="4">
-			<a id="add" href="" data-ng-click="contCtrl.toAdd()" class="btn btn-primary">Ajouter...</a>
-			<a id="add" href="" data-ng-show="results.length<contacts.length &amp;&amp; !q" data-ng-click="cancelOne()" class="btn btn-danger ng-hide">
-			<data-ng-pluralize count="contCtrl.contacts.length-results.length" when="{'one': 'Annuler la suppression.',
-                     'other': 'Annuler les suppressions ({}) .'}">Annuler les suppressions (3) .</data-ng-pluralize>
-			</a></td></tr>
-	</tbody></table>
+	<input type="text" placeholder="Filtrer..." class="form-control" data-ng-change="contCtrl.update()" data-ng-model="contCtrl.filtre">
+                    <table class="table table-striped" id="lstContact">
+                        <tbody>
+                            <tr class="animate-repeat" data-ng-repeat="contact in contCtrl.contacts |deletedCheck | filter:contCtrl.filtre as results" ng-if="contact.deleted === 'false'">
+                                <td>{{contact.nom}}</td>
+                                <td>{{contact.prenom}}</td>
+                                <td>{{contact.email}}</td>
+                                <td>
+                                    <a class="btn btn-info btn-xs" href="" data-ng-click="contCtrl.toUpdate(contact)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>&nbsp;
+                                    <a class="btn btn-danger btn-xs" href="" data-ng-click="contCtrl.toDelete(contact)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <a href="" class="btn btn-primary" data-ng-click="contCtrl.toAdd()">Ajouter...</a>
+                                    <a href="" class="btn btn-danger" data-ng-show="results.length<contCtrl.contacts.length" data-ng-click="contCtrl.cancel()">
+                                        <data-ng-pluralize count="contCtrl.contacts.length-results.length"
+                                            when="{'0': 'z',
+                                            '1': 'Annuler la suppression.',
+                                            'other': 'Annuler les suppressions ({})'}">
+                                        </data-ng-pluralize>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 </div>
 	<frm-contact-elem></frm-contact-elem>
-		<div class="container"><data-ng-pluralize count="contCtrl.contacts.length" when="{'0': 'Aucun résultat.',
+		<div class="container"><data-ng-pluralize count="results.length" when="{'0': 'Aucun résultat.',
                      'one': '1 contact trouvé.',
                      'other': '{} contacts trouvés.'}">Aucun résultat.</data-ng-pluralize>
 	</div>
