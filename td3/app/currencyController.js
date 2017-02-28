@@ -27,9 +27,18 @@ currencyApp.controller('currencyController', ["$http",function($http){
 
 	//Retourne le résultat en effectuant une requête JSONP vers l'adresse free.currencyconverterapi.com
 	//Modifie en retour la variable result
-	this.getResult = function(){
+    this.getResult = function(){
 
-	}
+        url = 'https://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from+'_'+self.to;
+        console.log(url);
+        $http.jsonp(url, {jsonCallbackParam: 'callback'}).
+        then(function(result){
+            if(!jQuery.isEmptyObject(result.data))
+                self.result = result.data[self.from+'_'+self.to].val*self.what;
+            else
+                alert('Erreur lors de la conversion');
+        });
+    }
 
 
 	//Echange la monnaie source et la monnaie cible 

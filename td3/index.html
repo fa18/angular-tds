@@ -45,20 +45,20 @@
 			<form class="form-group form-inline ng-pristine ng-valid" ng-keypress="$event.keyCode == 13 ? getResult() : null">
 				<input data-ng-model="curCtrl.what" class="form-control ng-pristine ng-untouched ng-valid" size="5" type="text">
 
-				<select data-ng-model="from" data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.from" class="form-control ng-pristine ng-untouched ng-valid"></select>
+				<select  data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.from" class="form-control ng-pristine ng-untouched ng-valid"></select>
 					<a href="#" data-ng-click="curCtrl.swap()"><=></a>
-				<!--	<option value="object:89" label="CAD - Canadian Dollar">CAD - Canadian Dollar</option></select>-->
-				<select data-ng-model="from" data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.from" class="form-control ng-pristine ng-untouched ng-valid">
-				<input value="Convertir" class="btn btn-primary" data-ng-click="getResult()" type="button">
+				
+				<select  data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.to" class="form-control ng-pristine ng-untouched ng-valid">
+				<input value="Convertir" class="btn btn-primary" data-ng-click="curCtrl.getResult()" type="button">
 
-				<input data-ng-model="result.value" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" size="5" type="text">
+				<input data-ng-model="curCtrl.result" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" size="5" type="text">
 
 				<div class="checkbox"><label><input class="ng-pristine ng-untouched ng-valid" data-ng-model="histo" type="checkbox">&nbsp;Historique</label></div>
 
 			</form>
 		</div>
 		<div class="container-fluid">
-			<div data-ng-show="histoNotEmpty() &amp;&amp; histo" class="panel panel-default ng-hide">
+			<div data-ng-show="curCtrl.histoNotEmpty() &amp;&amp; histo" class="panel panel-default ng-hide">
 				<div class="panel-body">
 					<table class="table table-striped" id="lstHisto" style="table-layout:fixed;width: 100%">
 						<tbody><tr>
@@ -71,6 +71,18 @@
 							<th></th>
 						</tr>
 						<!-- ngRepeat: (id,conversion) in historique -->
+									<td class="ng-binding">EUR</td>
+										<td class="ng-binding">USD</td>
+										<td class="text-center ng-binding">1.0584</td>
+										<td class="text-center ng-binding">1,0584</td>
+										<td class="text-center ng-binding">28/02/17 14:12:35</td>
+										<td class="text-center ng-binding">0,0000</td>
+										<td>
+											<img style="" class="ng-hide" src="js/ex5-currency/img/loader.gif" data-ng-show="conversion.update">&nbsp;
+											<button class="btn btn-info btn-xs" data-ng-click="updateHisto(conversion)" title="Rafraîchir"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>&nbsp;
+											<button class="btn btn-danger btn-xs" data-ng-click="deleteHisto(conversion)" title="Supprimer"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+									</td>
+
 						<tr>
 							<td colspan="7">
 								<form class="form-inline ng-pristine ng-valid">
