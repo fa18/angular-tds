@@ -138,6 +138,14 @@ contactApp.controller('contactController', ["$http",function($http){
 		
 	}
 
+	this.cancel = function(){
+        angular.forEach(self.contacts, function(contact){
+           if(contact.deleted){
+               contact.deleted = "false";
+           }
+        });
+    };
+
 	this.update = function(){
         if(self.contact != null){
             var index = self.contacts.indexOf(self.contact);
