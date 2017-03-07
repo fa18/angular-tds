@@ -30,7 +30,7 @@ currencyApp.controller('currencyController', ["$http",function($http){
 	//Retourne le résultat en effectuant une requête JSONP vers l'adresse free.currencyconverterapi.com
 	//Modifie en retour la variable result
     this.getResult = function(){
-    var url='http://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code;
+    var url='https://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code;
     console.log(url);
     $http.jsonp(url, {jsonpCallbackParam: 'callback'})
     .then(function(result) {
