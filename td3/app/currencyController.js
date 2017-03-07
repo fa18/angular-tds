@@ -7,6 +7,8 @@ currencyApp.controller('currencyController', ["$http",function($http){
 	$http.get('app/data/currencymap.json').
     then(function(response) {
         self.currencies = response.data;
+        self.from=self.currencies.EUR;
+        self.to=self.currencies.USD;
     },
     function(response) {
         console.log("Erreur avec le statut Http : "+response.status);
@@ -28,16 +30,18 @@ currencyApp.controller('currencyController', ["$http",function($http){
 	//Retourne le résultat en effectuant une requête JSONP vers l'adresse free.currencyconverterapi.com
 	//Modifie en retour la variable result
     this.getResult = function(){
-
-        url = 'https://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from+'_'+self.to;
-        console.log(url);
-        $http.jsonp(url, {jsonCallbackParam: 'callback'}).
-        then(function(result){
-            if(!jQuery.isEmptyObject(result.data))
-                self.result = result.data[self.from+'_'+self.to].val*self.what;
-            else
-                alert('Erreur lors de la conversion');
-        });
+    var url='http://free.currencyconverterapi.com/api/v3/convert?compact=y&q='+self.from.code+'_'+self.to.code;
+    console.log(url);
+    $http.jsonp(url, {jsonpCallbackParam: 'callback'})
+    .then(function(result) {
+                console.log("coucuo2");
+                if(!jQuery.isEmptyObject(result.data))
+                    self.result = result.data[self.from+'_'+self.to].val*self.what;
+                console.log(this.result);
+            },
+            function(result){console.log(result);}
+        );
+        
     }
 
 

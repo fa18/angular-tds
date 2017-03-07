@@ -45,10 +45,10 @@
 			<form class="form-group form-inline ng-pristine ng-valid" ng-keypress="$event.keyCode == 13 ? getResult() : null">
 				<input data-ng-model="curCtrl.what" class="form-control ng-pristine ng-untouched ng-valid" size="5" type="text">
 
-				<select  data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.from" class="form-control ng-pristine ng-untouched ng-valid"></select>
+				<select  data-ng-options="(v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.from" class="form-control ng-pristine ng-untouched ng-valid"></select>
 					<a href="#" data-ng-click="curCtrl.swap()"><=></a>
 				
-				<select  data-ng-options="v.code as (v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.to" class="form-control ng-pristine ng-untouched ng-valid">
+				<select  data-ng-options="(v.code + ' - ' + v.name) for (k,v) in curCtrl.currencies" data-ng-model="curCtrl.to" class="form-control ng-pristine ng-untouched ng-valid">
 				<input value="Convertir" class="btn btn-primary" data-ng-click="curCtrl.getResult()" type="button">
 
 				<input data-ng-model="curCtrl.result" class="form-control ng-pristine ng-untouched ng-valid" readonly="readonly" size="5" type="text">
