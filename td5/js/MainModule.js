@@ -1,4 +1,4 @@
-angular.module("MainModule",["AuthModule"]).config(['$routeProvider',
+angular.module("MainModule",["ngRoute","AuthModule"]).config(['$routeProvider',
        function($routeProvider) {
            $routeProvider.
                when('/clients', {
@@ -9,5 +9,8 @@ angular.module("MainModule",["AuthModule"]).config(['$routeProvider',
                when('/about', {
                    templateUrl: 'templates/about.html'
                  
+               
+               }).otherwise({
+                redirectTo: '/route1'
                });
        }]);
