@@ -7,9 +7,14 @@
 		<title>Routage</title>
 
 		<meta charset="UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular-route.min.js"></script>
+
 	</head>
 
-	<body>
+	<body ng-controller="mainController as curCtrl">
 		Vous êtes sur la page principale
+		<div ng-view></div>
+		<a href="#/route1">Route 1</a><br/>
+		<a href="#/about">About</a><br/>
 	</body>
 </html>	
