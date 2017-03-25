@@ -8,7 +8,7 @@ cours dispensés par M. Heron
   * Nombre de commit pour le projet Angular : 48
   * Nombre de commit moyen par séance : 4
   * Nombre de commit en dehors des jours de cours : 15 
-    Au vu des dernières semaines et du travail à fournir dans les autres matières, il y'a eu moins de commit régulier
+    (Au vu des dernières semaines et du travail à fournir dans les autres matières, il y'a eu moins de commit régulier)
   * Ratio ajout/suprression de code : 99%
 
   
