@@ -53,7 +53,7 @@ cours dispensés par M. Heron
    * Réaliser un historique avec json ✗
    * Effectuer l'opération inverse (échange des devises) ✗
 
-### Browserify - Objectifs réalisés 
+### Browserify - Objectifs réalisés :
  * Comparer la différence entre 2 projets avec et sans browserify ✓
  * Réaliser un bundle ✓
   
