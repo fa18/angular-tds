@@ -54,8 +54,8 @@ cours dispensés par M. Heron
    * Effectuer l'opération inverse (échange des devises) ✗
 
 ### Browserify - Objectifs réalisés 
- * Comparer la différence entre 2 projets avec et sans browserify
- * Réaliser un bundle
+ * Comparer la différence entre 2 projets avec et sans browserify ✓
+ * Réaliser un bundle ✓
   
 ## TD5 - Réalisé à 100%
 ### Routage - Objectifs réalisés :
